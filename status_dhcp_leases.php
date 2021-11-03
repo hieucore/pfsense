@@ -435,6 +435,8 @@
                     <th><?=gettext("MAC address")?></th>
                     <th><?=gettext("Start")?></th>
                     <th><?=gettext("End")?></th>
+                    <th><?=gettext("Online")?></th>
+                    <th><?=gettext("Lease Type")?></th>
                     <th data-sortable="false"><?=gettext("Actions")?></th>
                 </tr>
             </thead>
@@ -530,16 +532,11 @@
                         -->
                     <!--					<td><?=htmlspecialchars($data['act'])?></td>-->
                     <td>
-<?php if ($data['online'] == $online_string): ?>
-                    <code class="text-success">
-                    <?php else: ?>
-                    <code class="text-danger">
-                    <?php endif; ?>			
                         <?=htmlspecialchars($mac)?>
+
                         <?php if (isset($mac_man[$mac_hi])):?>
-                        (<?=htmlspecialchars($mac_man[$mac_hi])?>)
+                            (<?=htmlspecialchars($mac_man[$mac_hi])?>)
                         <?php endif; ?>
-			</code>
                     </td>
                     <!-- begin modification --> 
                     <?php if ($data['act'] == $active_string): ?>
@@ -552,6 +549,8 @@
                     <td> </td>
                     <td> </td>
                     <?php endif; ?>
+                    <td><?=htmlspecialchars($data['online'])?></td>
+                    <td><?=htmlspecialchars($data['act'])?></td>
                     <!-- end modification -->
                     <td>
                         <?php if ($data['type'] == $dynamic_string): ?>
@@ -622,6 +621,7 @@
 <?php else: ?>
 <a class="btn btn-info" href="status_dhcp_leases.php?all=1"><i class="fa fa-plus-circle icon-embed-btn"></i><?=gettext("Show all configured leases")?></a>
 <?php endif; ?>
+    <a class="btn btn-danger no-confirm" id="cleardhcp"><i class="fa fa-trash icon-embed-btn"></i><?=gettext("Clear all DHCP leases")?></a>
 <script type="text/javascript">
     //<![CDATA[
     events.push(function() {
